@@ -1,13 +1,16 @@
 import { createStore } from "vuex";
 import axios from "axios";
 export default createStore({
-	state: { counter: 0 },
+	state: { counter: 0, colorCode: "green" },
 	mutations: {
 		decreaseCounter(state, randomNumber) {
 			state.counter -= randomNumber;
 		},
 		increaseCounter(state, randomNumber) {
 			state.counter += randomNumber;
+		},
+		setColorCode(state, newValue) {
+			state.colorCode = newValue;
 		},
 	},
 	actions: {
@@ -24,6 +27,9 @@ export default createStore({
 			).then((response) => {
 				commit("decreaseCounter", response.data);
 			});
+		},
+		setColorCode({ commit }, newValue) {
+			commit("setColorCode", newValue);
 		},
 	},
 	getters: {
